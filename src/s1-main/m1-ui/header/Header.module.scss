@@ -1,0 +1,33 @@
+.headerContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .profileButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    & > span {
+      width: 150px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #818086;
+      border: 2px solid #818086;
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin-left: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        color: white;
+        border-color: white;
+      }
+      &:active {
+        color: #818086;
+        border-color: #818086;
+      }
+
+    }
+  }
+}
