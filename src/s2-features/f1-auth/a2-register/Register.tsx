@@ -1,10 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
-import s from './Login.module.scss'
+import s from "./Register.module.scss";
 import {useDispatch} from "react-redux";
-import {login} from "../../../s1-main/m2-bll/auth-reducer";
+import {ActionAuthType, register} from "../../../s1-main/m2-bll/auth-reducer";
 import {Link} from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
 
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
@@ -17,15 +17,15 @@ const Login = () => {
     const onChanePasswordHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.currentTarget.value)
     }
-
-    const onClickSendLogin = () => {
-        dispatch(login(email, password))
+    const onRegistrationHandler = () => {
+        dispatch(register(email, password))
     }
 
     return (
-        <div className={s.loginWrapper}>
-            <div className={s.loginContainer}>
-                <span style={{color: "white", fontSize: "24px", marginBottom: "15px"}}>Вход в аккаунт</span>
+
+        <div className={s.registerWrapper}>
+            <div className={s.registerContainer}>
+                <span style={{color: "white", fontSize: "24px", marginBottom: "15px"}}>Регистрация</span>
                 <div className={s.emailContainer}>
                     <input type="text"
                            id='email'
@@ -47,13 +47,13 @@ const Login = () => {
                     <label htmlFor="password" className={s.passwordLabel}>Password</label>
                 </div>
                 <span style={{color: '#818086'}}>
-                    Впервые на KinoLIFE?
-                    <Link to={'/register'} className={s.registerLink}>Зарегистрируйтесь</Link>
+                    Уже есть аккаунт?
+                    <Link to={'/login'} className={s.loginLink}> Войдите</Link>
                 </span>
-                <span className={s.loginButton} onClick={onClickSendLogin}>Вход</span>
+                <span className={s.loginButton} onClick={onRegistrationHandler}>Зарегистрироваться</span>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;

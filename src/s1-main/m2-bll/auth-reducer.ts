@@ -5,7 +5,6 @@ import {StoreType} from "./store";
 
 
 const SET_USER_DATA = "SET-USER-DATA";
-const SET_DISABLED = "SET_DISABLED";
 const SET_AUTH_STATUS = "SET_AUTH_STATUS"
 const SET_AUTH_ERROR = "SET_AUTH_ERROR"
 
@@ -16,9 +15,8 @@ type AuthThunkAction = ThunkAction<void,
     ActionAuthType>;
 
 
-type ActionAuthType =
+export type ActionAuthType =
     ReturnType<typeof setUserData>
-    | ReturnType<typeof setDisabledButton>
     | ReturnType<typeof setAuthStatus>
     | ReturnType<typeof setAuthError>
 
@@ -28,32 +26,41 @@ export type AuthStatusType =
     | 'loading'
     | "success"
     | "error"
-export type userDataType = {
-    _id: string;
-    email: string;
-    name: string;
-    avatar?: string;
-    publicCardPacksCount: number; // количество колод
+
+
+export type UserRolesType = [{
+    id: string,
+    roleName: string
+}]
+export type UserDataType = {
+    id: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    birthDay: string,
+    roles: UserRolesType
 };
 export type AuthType = typeof initialState;
 export type InitialStateType = {
-    userData: userDataType | null
+    userData: UserDataType | null
     isAuth: boolean
-    isDisabled: boolean
     status: AuthStatusType
     error: string
 }
 
 export const initialState: InitialStateType = {
     userData: {
-        _id: '',
-        name: "",
-        email: "",
-        avatar: '',
-        publicCardPacksCount: 0
+        id: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        birthDay: '',
+        roles: [{
+            id: '',
+            roleName: '',
+        }],
     },
     isAuth: false,
-    isDisabled: false,
     status: 'init',
     error: '',
 };
@@ -66,12 +73,6 @@ export const authReducer = (state: AuthType = initialState, action: ActionAuthTy
                 ...state,
                 userData: action.userData,
                 isAuth: action.isAuth
-            }
-        }
-        case SET_DISABLED: {
-            return {
-                ...state,
-                isDisabled: action.isDisabled
             }
         }
         case SET_AUTH_STATUS:
@@ -88,17 +89,11 @@ export const authReducer = (state: AuthType = initialState, action: ActionAuthTy
             return state
     }
 }
-export const setUserData = (userData: userDataType | null, isAuth: boolean) => {
+export const setUserData = (userData: UserDataType | null, isAuth: boolean) => {
     return {
         type: SET_USER_DATA,
         userData,
         isAuth
-    } as const;
-};
-export const setDisabledButton = (isDisabled: boolean) => {
-    return {
-        type: SET_DISABLED,
-        isDisabled
     } as const;
 };
 export const setAuthStatus = (status: AuthStatusType) => {
@@ -115,24 +110,24 @@ export const setAuthError = (error: string) => {
 }
 
 
-/*export const register = (email: string, password: string, repeatPassword: string) => () => {
-    authAPI.register(email, password, repeatPassword)
+export const register = (email: string, password: string) => () => {
+    authAPI.register(email, password)
         .then(response => {
         })
         .catch(e => {
             const error = e.response ? e.response.data.error : (e.message + 'more details in the console')
             alert(error)
         })
-}*/
+}
 
 export const login = (email: string, password: string): AuthThunkAction => async (dispatch) => {
     dispatch(setAuthStatus("loading"))
     try {
         await authAPI.login(email, password)
-        //dispatch(getAuthUserData());
+        dispatch(getAuthUserData());
         dispatch(setAuthStatus("success"))
 
-    } catch (e:any) {
+    } catch (e: any) {
         dispatch(setAuthStatus("error"))
         dispatch(setAuthError(e.response.data.error))
     }
@@ -149,12 +144,12 @@ export const login = (email: string, password: string): AuthThunkAction => async
 }*/
 
 
-/*export const getAuthUserData = () => (dispatch: Dispatch) => {
+export const getAuthUserData = () => (dispatch: Dispatch) => {
     return authAPI.me()
         .then(response => {
             dispatch(setUserData(response.data, true))
         })
-}*/
+}
 
 /*export const editAuthUserData = (name: string, avatar: string) => (dispatch: Dispatch) => {
     setDisabledButton(true)

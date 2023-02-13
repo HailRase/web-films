@@ -1,28 +1,62 @@
 .headerContainer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  padding-bottom: 25px;
+
+  .moviesCategory {
+    color: #818086;
+
+    & > span {
+      font-size: 18px;
+      line-height: 20px;
+      font-weight: 500;
+      font-style: normal;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: 0.3s;
+
+      &:hover {
+        color: white;
+        font-size: 20px;
+      }
+    }
+  }
+
   .profileButton {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 300px;
+    justify-content: flex-start;
+    background-color: #e40914;
+    user-select: none;
+    border: 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    fill: currentColor;
+    position: relative;
+    line-height: 1;
+    padding: 8px 16px;
+    transition-duration: .4s;
+
+    &:hover {
+      opacity: .7;
+    }
+
     & > span {
-      width: 150px;
-      font-size: 18px;
+      font-size: 16px;
+      line-height: 20px;
       font-weight: 500;
-      color: #818086;
-      border: 2px solid #818086;
-      padding: 5px 10px;
-      border-radius: 5px;
-      margin-left: 10px;
+      font-style: normal;
+      color: white;
       text-align: center;
       cursor: pointer;
       transition: 0.3s;
+
       &:hover {
         color: white;
         border-color: white;
       }
+
       &:active {
         color: #818086;
         border-color: #818086;

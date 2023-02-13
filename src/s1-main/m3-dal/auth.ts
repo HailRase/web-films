@@ -1,18 +1,20 @@
-import { instance } from "./instance"
+import {instance} from "./instance"
 
 export const authAPI = {
-  login(email: string, password: string) {
-      return instance.post(`api/v1/auth/signin`, { email, password })
-  },
-    /*register(email: string, password: string, repeatPassword: string) {
-        return instance.post(`/auth/register`, { email, password, repeatPassword })
+    login(email: string, password: string) {
+        return instance.post(`auth/signin`, {email, password})
     },
-    logout(){
-        return instance.delete('auth/me')
+    register(email: string, password: string) {
+        return instance.post(`auth/signup`, { email, password })
     },
     me() {
         return instance.post(`auth/me`)
     },
+    /*
+    logout(){
+        return instance.delete('auth/me')
+    },
+
     edit(name: string, avatar: string) {
       return instance.put(`auth/me`, { name, avatar })
     },*/
