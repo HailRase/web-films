@@ -10,14 +10,14 @@ const Header = () => {
     const onSignInHandler = () => {
         navigate(PATH.AUTH.LOGIN)
     }
-    const onSignUpHandler = () => {
-        navigate(PATH.AUTH.REGISTER)
+    const onFilmsPageHandler = () => {
+        navigate(PATH.HEADER_CATEGORY.FILMS)
     }
 
     return (
         <div className={s.headerContainer}>
             <div className={s.moviesCategory}>
-                <span>Фильмы</span>
+                <span onClick={onFilmsPageHandler}>Фильмы</span>
                 <span>Сериалы</span>
                 <span>Мультфильмы</span>
                 <span>TV-Шоу</span>

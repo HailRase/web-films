@@ -48,7 +48,7 @@ export type InitialStateType = {
     error: string
 }
 
-export const initialState: InitialStateType = {
+const initialState: InitialStateType = {
     userData: {
         id: '',
         email: '',

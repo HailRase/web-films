@@ -7,12 +7,12 @@ const Home = () => {
 
 
     const onClickHandler = async () => {
-        await moviesAPI.getMovie(1)
+        await moviesAPI.getMovies()
     }
 
     return (
         <div>
-            {/*<button onClick={onClickHandler}>Send</button>*/}
+            <button onClick={onClickHandler}>Send</button>
         </div>
     );
 };

@@ -1,7 +1,11 @@
 import {instance} from "./instance"
 
 export const moviesAPI = {
-    getMovie(id: number) {
-        return instance.get(`movies/${id}`)
+    getMovies(page?:number, size?:number, order?: string) {
+        /*let path = ''
+        switch (path) {
+
+        }*/
+        return instance.get(`movies?page=${page}&size=${size}&order=${order}`)
     },
 }
