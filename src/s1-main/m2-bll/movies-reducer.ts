@@ -83,10 +83,21 @@ export const setMoviesStatus = (status: MoviesStatusType) => {
         status
     } as const
 }
-export const getMovies = (page: number = 0, size: number = 10, order: string = ''): MoviesThunkAction => async (dispatch) => {
+export const fetchMovies = (page: number = 0, size: number = 10, order: string = ''): MoviesThunkAction => async (dispatch) => {
     dispatch(setMoviesStatus("loading"))
     try {
         const movies = await moviesAPI.getMovies(page, size, order)
+        dispatch(setMovies(movies.data.items))
+        dispatch(setMoviesStatus("success"))
+
+    } catch (e: any) {
+        dispatch(setMoviesStatus("error"))
+    }
+}
+export const fetchMovie = (id: number): MoviesThunkAction => async (dispatch) => {
+    dispatch(setMoviesStatus("loading"))
+    try {
+        const movies = await moviesAPI.getMovie(id)
         dispatch(setMovies(movies.data.items))
         dispatch(setMoviesStatus("success"))
 

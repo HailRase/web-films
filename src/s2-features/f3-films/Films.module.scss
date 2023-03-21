@@ -1,33 +1,42 @@
-.moviesContainer {
-  width: 1000px;
+.moviesWrapper {
   display: flex;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 
-  .movieContainer {
+  .moviesContainer {
+    width: 1000px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    margin-left: 300px;
-    height: 200px;
-    width: 120px;
+    justify-content: center;
+    align-items: flex-start;
 
-    .nameRu {
-      color: white;
-      margin-top: 5px;
-    }
+    .movieContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin-left: 25px;
 
-    & > img {
-      border-radius: 5px;
-      height: 200px;
-      width: 120px;
-      transition: all .3s;
-      cursor: pointer;
-      &:hover {
-        height: 205px;
-        width: 125px;
+      .nameRu {
+        color: white;
+        margin-top: 5px;
+
+      }
+
+      & > img {
+        border-radius: 5px;
+        transition: all .3s;
+        cursor: pointer;
+        background-size: cover;
+        height: 220px;
+        width: 130px;
+
+        &:hover {
+          height: 225px;
+          width: 135px;
+        }
       }
     }
+
   }
 
 }

@@ -11,7 +11,7 @@ const Header = () => {
         navigate(PATH.AUTH.LOGIN)
     }
     const onFilmsPageHandler = () => {
-        navigate(PATH.HEADER_CATEGORY.FILMS)
+        navigate(PATH.HEADER_CATEGORY.FILMS.PATH)
     }
 
     return (

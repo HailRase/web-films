@@ -4,7 +4,10 @@ export const PATH = {
         REGISTER: '/register'
     },
     HEADER_CATEGORY: {
-        FILMS: '/films',
+        FILMS: {
+            PATH: '/films',
+            FILM: '/films/film/:id'
+        },
         SERIES: '/series',
         CARTOONS: '/cartoons',
         TV_SHOWS:'/tv_shows'
