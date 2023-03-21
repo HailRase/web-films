@@ -14,11 +14,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      margin-left: 25px;
-
+      margin-left: 50px;
+      transition: all .3s;
+      &:hover {
+        transform: scale(1.1);
+      }
       .nameRu {
         color: white;
-        margin-top: 5px;
+        margin-top: 10px;
 
       }
 
@@ -29,11 +32,6 @@
         background-size: cover;
         height: 220px;
         width: 130px;
-
-        &:hover {
-          height: 225px;
-          width: 135px;
-        }
       }
     }
 

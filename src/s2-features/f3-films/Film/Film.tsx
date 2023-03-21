@@ -7,12 +7,14 @@ import {fetchMovie} from "../../../s1-main/m2-bll/movies-reducer";
 const Film = () => {
 
     const movies = useAppSelector(state => state?.movies?.movies)
-    const id = useParams()
+    debugger
+    const {id} = useParams()
     debugger
     const dispatch = useDispatch<any>()
     useEffect(() => {
         if (id)
-        dispatch(fetchMovie(Number(id)))
+        dispatch(fetchMovie(+id))
+        debugger
     },[])
 
 
