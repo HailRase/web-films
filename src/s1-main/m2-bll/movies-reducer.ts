@@ -3,6 +3,7 @@ import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./store";
 
 const SET_MOVIES = "SET_MOVIES";
+const SET_MOVIE = "SET_MOVIE";
 const SET_MOVIES_STATUS = "SET_MOVIES_STATUS"
 
 type MoviesThunkAction = ThunkAction<void,
@@ -12,6 +13,7 @@ type MoviesThunkAction = ThunkAction<void,
 
 type ActionMoviesType = ReturnType<typeof setMovies>
     | ReturnType<typeof setMoviesStatus>
+    | ReturnType<typeof setMovie>
 
 
 export type MoviesStatusType =
@@ -53,17 +55,24 @@ const initialState: InitialStateType = {
 
 
 export const moviesReducer = (state: InitialStateType = initialState, action: ActionMoviesType): typeof initialState => {
-    switch (action.type){
-        case "SET_MOVIES":{
+    switch (action.type) {
+        case SET_MOVIES: {
             return {
                 ...state,
                 movies: action.movies,
             }
         }
-        case "SET_MOVIES_STATUS":{
+        case SET_MOVIES_STATUS: {
             return {
                 ...state,
                 status: action.status
+            }
+        }
+        case SET_MOVIE: {
+            return {
+                ...state,
+                movies: [action.movie]
+
             }
         }
         default:
@@ -76,6 +85,12 @@ export const setMovies = (movies: MovieType[]) => {
         movies
     } as const;
 };
+export const setMovie = (movie: MovieType) => {
+    return {
+        type: SET_MOVIE,
+        movie
+    } as const;
+};
 
 export const setMoviesStatus = (status: MoviesStatusType) => {
     return {
@@ -83,6 +98,8 @@ export const setMoviesStatus = (status: MoviesStatusType) => {
         status
     } as const
 }
+
+
 export const fetchMovies = (page: number = 0, size: number = 10, order: string = ''): MoviesThunkAction => async (dispatch) => {
     dispatch(setMoviesStatus("loading"))
     try {
@@ -98,9 +115,8 @@ export const fetchMovie = (id: number): MoviesThunkAction => async (dispatch) =>
     dispatch(setMoviesStatus("loading"))
     try {
         const movies = await moviesAPI.getMovie(id)
-        dispatch(setMovies(movies.data.items))
+        dispatch(setMovie(movies.data))
         dispatch(setMoviesStatus("success"))
-
     } catch (e: any) {
         dispatch(setMoviesStatus("error"))
     }

@@ -5,6 +5,7 @@
 
   .moviesContainer {
     width: 1000px;
+    flex-wrap: wrap;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -15,6 +16,7 @@
       align-items: center;
       justify-content: flex-start;
       margin-left: 50px;
+      margin-top: 20px;
       transition: all .3s;
       &:hover {
         transform: scale(1.1);
@@ -30,7 +32,7 @@
         transition: all .3s;
         cursor: pointer;
         background-size: cover;
-        height: 220px;
+        height: 190px;
         width: 130px;
       }
     }

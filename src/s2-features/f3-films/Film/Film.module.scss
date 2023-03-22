@@ -1,0 +1,88 @@
+.filmWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .filmContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 1000px;
+    margin: 0 200px;
+
+    .filmInfo {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+
+      .filmPoster {
+        & > img {
+          width: 300px;
+          height: 400px;
+          border-radius: 10px;
+        }
+      }
+
+      .filmDescription {
+        margin-left: 50px;
+
+        & > span {
+          display: block;
+        }
+
+        .filmNameRu {
+          color: white;
+          font-family: "Arial Black";
+          font-weight: 600;
+          font-size: 26px;
+        }
+
+        .filmNameEn {
+          margin-top: 10px;
+          color: #818086;
+          font-family: Bahnschrift;
+          font-weight: 600;
+          font-size: 18px;
+        }
+
+        .description {
+          margin-top: 10px;
+          color: white;
+          font-family: Bahnschrift;
+          font-size: 18px;
+        }
+
+        .aboutFilm {
+          margin-top: 50px;
+
+          & > span {
+            display: block;
+            margin-top: 10px;
+            font-family: Bahnschrift;
+            font-size: 16px;
+            color: white;
+            margin-bottom: 20px;
+          }
+
+          .aboutFilmTag {
+            & > span {
+              color: #818086;
+              display: block;
+              font-family: Bahnschrift;
+            }
+          }
+
+          .aboutFilmTagDescription {
+            margin-left: 20px;
+            & > span {
+              color: white;
+              display: block;
+              font-family: Bahnschrift;
+            }
+          }
+        }
+      }
+    }
+  }
+}
