@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route, Routes } from 'react-router-dom';
 import s from './App.module.scss';
 import Header from "./header/Header";
@@ -8,13 +8,21 @@ import Register from "../../s2-features/f1-auth/a2-register/Register";
 import Home from "../../s2-features/f2-home/Home";
 import Films from "../../s2-features/f3-films/Films";
 import Film from "../../s2-features/f3-films/Film/Film";
+import {useDispatch} from "react-redux";
+import {getAuthUserData} from "../m2-bll/auth-reducer";
 
 function App() {
+
+    const dispatch = useDispatch<any>()
+    useEffect(()=> {
+        dispatch(getAuthUserData())
+    },[])
+
   return (
     <div className={s.appContainer}>
       <Header/>
         <Routes>
-            <Route path='/' element={<Home/>}/>
+            <Route path={PATH.HOME} element={<Home/>}/>
             <Route path={PATH.AUTH.LOGIN} element={<Login/>}/>
             <Route path={PATH.AUTH.REGISTER} element={<Register/>}/>
             <Route path={PATH.HEADER_CATEGORY.FILMS.PATH} element={<Films/>}/>

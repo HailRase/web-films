@@ -2,10 +2,13 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './Login.module.scss'
 import {useDispatch} from "react-redux";
 import {login} from "../../../s1-main/m2-bll/auth-reducer";
-import {Link} from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
+import {useAppSelector} from "../../../s1-main/m2-bll/store";
+import {PATH} from "../../../s1-main/m1-ui/routes/routes";
 
 const Login = () => {
 
+    const isAuth = useAppSelector(state => state.auth.isAuth)
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
@@ -20,6 +23,9 @@ const Login = () => {
 
     const onClickSendLogin = () => {
         dispatch(login(email, password))
+    }
+    if (isAuth) {
+        return <Navigate to={PATH.HOME}/>
     }
 
     return (

@@ -5,18 +5,22 @@ export const authAPI = {
         return instance.post(`auth/signin`, {email, password})
     },
     register(email: string, password: string) {
-        return instance.post(`auth/signup`, { email, password })
+        return instance.post(`auth/signup`, {email, password})
     },
     me() {
-        return instance.post(`auth/me`)
-    },
-    /*
-    logout(){
-        return instance.delete('auth/me')
+        return instance.get(`auth/me`, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
     },
 
-    edit(name: string, avatar: string) {
-      return instance.put(`auth/me`, { name, avatar })
-    },*/
+    logout() {
+        return instance.delete('auth/me')
+    },
+    /*
+        edit(name: string, avatar: string) {
+          return instance.put(`auth/me`, { name, avatar })
+        },*/
 
 }

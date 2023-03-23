@@ -123,7 +123,8 @@ export const register = (email: string, password: string) => () => {
 export const login = (email: string, password: string): AuthThunkAction => async (dispatch) => {
     dispatch(setAuthStatus("loading"))
     try {
-        await authAPI.login(email, password)
+        const response = await authAPI.login(email, password)
+        localStorage.setItem("token", response.data.accessToken)
         dispatch(getAuthUserData());
         dispatch(setAuthStatus("success"))
 

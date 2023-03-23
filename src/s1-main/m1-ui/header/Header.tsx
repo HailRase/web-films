@@ -2,9 +2,14 @@ import React from 'react';
 import s from './Header.module.scss';
 import {useNavigate} from "react-router-dom";
 import {PATH} from "../routes/routes";
+import {useAppSelector} from "../../m2-bll/store";
+
+import {faUser} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Header = () => {
 
+    const isAuth = useAppSelector<boolean>( state => state.auth.isAuth)
     let navigate = useNavigate()
 
     const onSignInHandler = () => {
@@ -23,8 +28,7 @@ const Header = () => {
                 <span>TV-Шоу</span>
             </div>
             <div className={s.profileButton}>
-                <span onClick={onSignInHandler}>Войти</span>
-                {/*<span onClick={onSignUpHandler}>Зарегистрироваться</span>*/}
+                {isAuth ? <FontAwesomeIcon style={{color: "white"}} icon={faUser} /> : <span onClick={onSignInHandler}>Войти</span>}
             </div>
         </div>
     );
