@@ -1,4 +1,4 @@
-import {instance} from "./instance"
+import {instance} from "../instance/instance"
 
 export const moviesAPI = {
     getMovies(page?:number, size?:number, order?: string) {

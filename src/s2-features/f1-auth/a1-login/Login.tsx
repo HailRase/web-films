@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './Login.module.scss'
 import {useDispatch} from "react-redux";
 import {login} from "../../../s1-main/m2-bll/auth-reducer";
-import {Link, Navigate, useNavigate} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {useAppSelector} from "../../../s1-main/m2-bll/store";
 import {PATH} from "../../../s1-main/m1-ui/routes/routes";
 

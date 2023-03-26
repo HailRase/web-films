@@ -1,4 +1,4 @@
-import {moviesAPI} from "../m3-dal/movies";
+import {moviesAPI} from "../m3-dal/api/movies";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./store";
 

@@ -1,13 +1,13 @@
 import React from 'react';
-import {authAPI} from "../../s1-main/m3-dal/auth";
-import {moviesAPI} from "../../s1-main/m3-dal/movies";
+import {useDispatch} from "react-redux";
+import {logout} from "../../s1-main/m2-bll/auth-reducer";
 
 const Home = () => {
 
 
-
+    const dispatch = useDispatch<any>()
     const onClickHandler = async () => {
-        await moviesAPI.getMovies()
+        dispatch(logout())
     }
 
     return (

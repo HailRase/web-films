@@ -1,4 +1,4 @@
-import {authAPI} from "../m3-dal/auth";
+import {authAPI} from "../m3-dal/api/auth";
 import {Dispatch} from "redux";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./store";
@@ -133,16 +133,16 @@ export const login = (email: string, password: string): AuthThunkAction => async
         dispatch(setAuthError(e.response.data.error))
     }
 }
-/*export const logout = () => (dispatch: Dispatch) => {
-    authAPI.logout()
-        .then(response => {
+export const logout = () => (dispatch: Dispatch) => {
+        try {
+            localStorage.removeItem("token")
             dispatch(setUserData(null, false));
-        })
-        .catch(e => {
+        }
+        catch(e: any){
             const error = e.response ? e.response.data.error : (e.message + 'more details in the console')
             alert(error)
-        })
-}*/
+        }
+}
 
 
 export const getAuthUserData = () => (dispatch: Dispatch) => {

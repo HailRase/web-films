@@ -1,4 +1,4 @@
-import {instance} from "./instance"
+import {instance} from "../instance/instance"
 
 export const authAPI = {
     login(email: string, password: string) {
@@ -13,10 +13,6 @@ export const authAPI = {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
         })
-    },
-
-    logout() {
-        return instance.delete('auth/me')
     },
     /*
         edit(name: string, avatar: string) {
