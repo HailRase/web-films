@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const instance = axios.create({
-    baseURL: 'https://movies-cloud.herokuapp.com/api/v1/',
+    baseURL: 'http://64.226.97.69:8080/api/v1/',
 });
