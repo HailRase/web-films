@@ -137,6 +137,7 @@ export const logout = () => (dispatch: Dispatch) => {
         try {
             localStorage.removeItem("token")
             dispatch(setUserData(null, false));
+            dispatch(setAuthStatus("init"))
         }
         catch(e: any){
             const error = e.response ? e.response.data.error : (e.message + 'more details in the console')

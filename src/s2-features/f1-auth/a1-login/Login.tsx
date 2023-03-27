@@ -1,14 +1,17 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './Login.module.scss'
 import {useDispatch} from "react-redux";
-import {login} from "../../../s1-main/m2-bll/auth-reducer";
+import {AuthStatusType, login} from "../../../s1-main/m2-bll/auth-reducer";
 import {Link, Navigate} from "react-router-dom";
 import {useAppSelector} from "../../../s1-main/m2-bll/store";
 import {PATH} from "../../../s1-main/m1-ui/routes/routes";
+import Loader from "../../../s1-main/m1-ui/common/components/c1-loader/Loader";
 
 const Login = () => {
 
     const isAuth = useAppSelector(state => state.auth.isAuth)
+    const userEmail = useAppSelector(state => state.auth.userData?.email)
+    const status = useAppSelector<AuthStatusType>(state => state.auth.status)
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
@@ -24,13 +27,13 @@ const Login = () => {
     const onClickSendLogin = () => {
         dispatch(login(email, password))
     }
-    if (isAuth) {
+    if (isAuth || status === 'success' && userEmail !== null) {
         return <Navigate to={PATH.HOME}/>
     }
 
     return (
         <div className={s.loginWrapper}>
-            <div className={s.loginContainer}>
+            {status === 'loading' ? <Loader/> : <div className={s.loginContainer}>
                 <span style={{color: "white", fontSize: "24px", marginBottom: "15px"}}>Вход в аккаунт</span>
                 <div className={s.emailContainer}>
                     <input type="text"
@@ -57,7 +60,7 @@ const Login = () => {
                     <Link to={'/register'} className={s.registerLink}>Зарегистрируйтесь</Link>
                 </span>
                 <span className={s.loginButton} onClick={onClickSendLogin}>Вход</span>
-            </div>
+            </div>}
         </div>
     );
 };

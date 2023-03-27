@@ -2,7 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 25px;
+  min-height: 30px;
+  max-height: 70px;
+  margin: 20px 0;
 
   .moviesCategory {
     color: #818086;
@@ -63,5 +65,24 @@
       }
 
     }
+  }
+
+  .profileMenuDropDown {
+    background-color: #141414;
+    color: white;
+    padding: 8px 16px;
+    position: absolute;
+    border-radius:0 0 1rem 1rem;
+    height: 400px;
+    width: 150px;
+    right: 40px;
+    & > ul > li {
+      color: white;
+      visibility: visible;
+      background-color: white;
+    }
+  }
+  .visible {
+    visibility: hidden;
   }
 }
