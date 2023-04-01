@@ -28,7 +28,7 @@ const Film = () => {
     useEffect(() => {
         if (movies?.length === 0 && filmId)
             dispatch(fetchMovie(filmId))
-    }, [filmId, movies, id])
+    }, [filmId, movies, id, dispatch])
     const film = movies?.length > 5 ? movies[filmId - 1] : movies[0]
 
     return (
